@@ -1,0 +1,16 @@
+<h1>Hello World!</h1>
+
+<ul>
+    {% for foo in data %}
+    <li>
+        {{foo.title}} | by {{foo.author.name}}
+        <ul>
+            <li>
+                {{foo.description}}
+            </li>
+        </ul>
+
+    </li>
+    {% endfor %}
+    
+</ul>
