@@ -22,8 +22,6 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
-    def url(self):
-        return f"/author/{self.id}"
 
 class Recipe(models.Model):
     title = models.CharField(max_length=30)
@@ -34,5 +32,3 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
-    def url(self):
-        return f"/recipe/{self.id}"
