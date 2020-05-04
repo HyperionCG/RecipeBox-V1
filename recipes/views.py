@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
-from recipes.models import Recipes
+from recipes.models import Recipe
 
 # Create your views here.
 def index(request):
-    data = Recipes.objects.all()
+    data = Recipe.objects.all()
     return render(request, 'index.html', {'data': data})

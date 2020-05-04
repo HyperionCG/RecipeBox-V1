@@ -25,7 +25,7 @@ class Author(models.Model):
     def url(self):
         return f"/author/{self.id}"
 
-class Recipes(models.Model):
+class Recipe(models.Model):
     title = models.CharField(max_length=30)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     description = models.TextField()
@@ -35,4 +35,4 @@ class Recipes(models.Model):
     def __str__(self):
         return self.title
     def url(self):
-        return f"/recipes/{self.id}"
+        return f"/recipe/{self.id}"
