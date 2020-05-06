@@ -1,10 +1,10 @@
-<h1>Welcome To the Recipes</h1>
-
+<h1>{{namedata.name}}</h1>
 <ul>
+    {{namedata.bio}}
+</ul>
     {% for recipes in data %}
         <li>
             <a href="/recipe/{{recipes.id}}">{{recipes.title}}</a>
         </li>
     {% endfor %}
-    
-</ul>
+<a href="/">Home</a>
