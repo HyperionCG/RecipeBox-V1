@@ -1,5 +1,7 @@
 <h1>Welcome To the Recipes</h1>
 
+Are you logged in? {{ request.user.is_authenticated }}
+
 <ul>
     {% for recipes in data %}
         <li>
