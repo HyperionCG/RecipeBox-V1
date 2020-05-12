@@ -17,7 +17,7 @@ def signupview(request):
                 password=data['password']
                 )
     form = LoginForm()
-    return render(request, 'generic_form.html', {'form':form})
+    return HttpResponseRedirect(reverse('homepage'))
 
 
 def loginview(request):
