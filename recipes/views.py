@@ -16,8 +16,13 @@ def signupview(request):
                 username=data['username'],
                 password=data['password']
                 )
+            if user:
+                login(request, user)
+                return HttpResponseRedirect(
+                    request.GET.get('next', reverse('homepage'))
+                )
     form = LoginForm()
-    return HttpResponseRedirect(reverse('homepage'))
+    return render(request, 'generic_form.html', {'form':form})
 
 
 def loginview(request):
