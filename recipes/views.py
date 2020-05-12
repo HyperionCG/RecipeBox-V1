@@ -26,6 +26,9 @@ def logoutview(request):
     logout(request)
     return HttpResponseRedirect(reverse('homepage'))
 
+def errorview(request):
+    return render(request, 'errorpage.html')
+
 
 def index(request):
     data = Recipe.objects.all()

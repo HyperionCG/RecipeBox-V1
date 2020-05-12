@@ -1,6 +1,11 @@
 <h1>Welcome To the Recipes</h1>
-
-Are you logged in? {{ request.user.is_authenticated }}
+{%if request.user.is_authenticated %}
+You are logged in as {{ request.user.username }}
+{%endif%}
+{%if not request.user.is_authenticated %}
+Please Login <br>
+To Login <a href="login/">Click Here</a> <p></p>
+{%endif%}
 
 <ul>
     {% for recipes in data %}
@@ -10,6 +15,7 @@ Are you logged in? {{ request.user.is_authenticated }}
     {% endfor %}
     To add an Author <a href="addauthor/">Click Here</a> <br>
     To add a Recipe <a href="addrecipe/">Click Here</a> <br>
-    To Login <a href="login/">Click Here</a> <p></p>
+    {%if request.user.is_authenticated %}
     To Logout <a href="logout/">Click Here</a>
+    {%endif%}
 </ul>
