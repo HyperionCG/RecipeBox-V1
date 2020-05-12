@@ -7,6 +7,19 @@ from recipes.models import Author, Recipe
 from recipes.forms import AddRecipeForm, AddAuthorForm, LoginForm
 
 # Create your views here.
+def signupview(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            User.objects.create_user(
+                username=data['username'],
+                password=data['password']
+                )
+    form = LoginForm()
+    return render(request, 'generic_form.html', {'form':form})
+
+
 def loginview(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -42,14 +55,10 @@ def add_author(request):
         form = AddAuthorForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            user = User.objects.create_user(
-                username=data['username'],
-                 password=data['password']
-                 )
             submission = Author.objects.create(
-                user=user,
-                 name=data['name'],
-                  bio=data['bio']
+                user=request.user,
+                name=data['name'],
+                bio=data['bio']
             )
             submission.save()
             return HttpResponseRedirect(reverse('homepage'))
