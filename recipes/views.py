@@ -12,7 +12,7 @@ def signupview(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            User.objects.create_user(
+            user = User.objects.create_user(
                 username=data['username'],
                 password=data['password']
                 )
