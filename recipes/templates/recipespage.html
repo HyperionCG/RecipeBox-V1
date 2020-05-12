@@ -12,5 +12,13 @@
 
         </li>
 </ul>
+{%if request.user.is_authenticated %}
+You are logged in as {{ request.user.username }}
+{%endif%}
+{%if not request.user.is_authenticated %}
+Please Login <br>
 To Login <a href="login/">Click Here</a> <p></p>
+{%endif%}
+{%if request.user.is_authenticated %}<br>
 To Logout <a href="logout/">Click Here</a>
+{%endif%}

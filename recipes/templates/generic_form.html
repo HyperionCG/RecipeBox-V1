@@ -3,5 +3,13 @@
     {{ form.as_p }}
     <input type="submit" value="Submit!">
 </form>
-To Login <a href="/login/">Click Here</a> <p></p>
-To Logout <a href="/logout/">Click Here</a>
+{%if request.user.is_authenticated %}
+You are logged in as {{ request.user.username }}
+{%endif%}
+{%if not request.user.is_authenticated %}
+Please Login <br>
+To Login <a href="login/">Click Here</a> <p></p>
+{%endif%}
+{%if request.user.is_authenticated %}<br>
+To Logout <a href="logout/">Click Here</a>
+{%endif%}
