@@ -54,19 +54,23 @@ def index(request):
 
 @login_required
 def add_author(request):
-    html = "generic_form.html"
-    
-    if request.method == "POST":
-        form = AddAuthorForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            submission = Author.objects.create(
-                user=request.user,
-                name=data['name'],
-                bio=data['bio']
-            )
-            submission.save()
-            return HttpResponseRedirect(reverse('homepage'))
+    if request.user.is_staff:
+        html = "generic_form.html"
+        
+        if request.method == "POST":
+            form = AddAuthorForm(request.POST)
+            if form.is_valid():
+                data = form.cleaned_data
+                user = User.objects.create_user(
+                    username=data['username'],
+                    password=data['password']
+                    )
+                Author.objects.create(
+                    user=user,
+                    name=data['name'],
+                    bio=data['bio']
+                )
+                return HttpResponseRedirect(reverse('homepage'))
     
     form = AddAuthorForm()
 
