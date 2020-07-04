@@ -30,8 +30,11 @@ def loginview(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            user = authenticate(request, username=data['username'], password=data['password']
-            )
+            user = authenticate(
+                request,
+                username=data['username'],
+                password=data['password']
+                )
             if user:
                 login(request, user)
                 return HttpResponseRedirect(
@@ -71,6 +74,8 @@ def add_author(request):
                     bio=data['bio']
                 )
                 return HttpResponseRedirect(reverse('homepage'))
+    else:
+        return render (request, 'errorpage.html')
     
     form = AddAuthorForm()
 
